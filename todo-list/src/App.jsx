@@ -1,4 +1,5 @@
 import { Component } from "react";
+import FilmsList from "./components/filmsList";
 import "./App.css";
 
 class App extends Component {
@@ -37,6 +38,8 @@ onSubmit(event) {
             return <li key={item + i}>{item}</li>;
           })}
         </ul>
+      <FilmsList />
+
       </div>
     );
   }
