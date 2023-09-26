@@ -1,35 +1,30 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 
-class FilmsList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [],
-    };
-  }
+function FilmsList(props) {
+    let [list, setList] = useState([])
 
-  getFilms() {
+  function getFilms() {
     fetch("https://studioghibliapi-d6fc8.web.app/films")
     .then((res) => res.json())
-    .then((films) => this.setState({list: films}))
-    .catch((err => console.log(err)));
+    .then((films) => setList(films))
+    .catch((err) => console.error(err));
 }
 
-componentDidMount() {
-   this.getFilms()
-}
+useEffect(() => {
+  getFilms();
+}, []);
   
+  return (
+
   
-  render() {
-      return <ul>
-        {this.state.list.map((film) => {
+       <ul>
+        {list.map((film) => {
             return <li key={film.id}>{film.title}  {film.release_date}----{film.description}</li>
         })}
-    </ul>;
-  }
+    </ul>
+  );
+
 }
-
-
 
 
 export default FilmsList;
