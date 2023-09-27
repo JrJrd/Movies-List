@@ -5,6 +5,7 @@ import { useState } from "react";
 function HomePage(props){
   let [ list, setList] = useState(["ready", "set", "go"]);
   let [text, setText] = useState("");
+
 function onSubmit(event) {
     event.preventDefault();
 
