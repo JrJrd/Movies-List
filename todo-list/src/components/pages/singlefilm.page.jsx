@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 
 function SingleFilmPage(props) {
   let [item, setItem] = useState({});
@@ -9,8 +10,13 @@ function SingleFilmPage(props) {
   function getFilm() {
     fetch(`https://studioghibliapi-d6fc8.web.app/films/${id}`)
       .then((res) => res.json())
+      .then((film) => setItem(film))
       .catch((err) => console.error(err));
   }
+
+  useEffect(() => {
+    getFilm();
+  }, []);
 
   return (
     <div>
